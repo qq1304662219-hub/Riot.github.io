@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>我的作品集</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }
-    h1 { text-align: center; color: #333; }
-    .intro { text-align: center; margin: 20px 0; }
-    .video-container { margin: 30px 0; text-align: center; }
-    iframe { width: 100%; max-width: 800px; height: 480px; border: none; }
-    .resume { text-align: center; margin: 30px 0; }
-    a { color: #007bff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riot的作品集</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Riot的作品集</h1>
-  
-  <div class="intro">
-    <p>短视频导演 · B站创作者 · 视觉叙事爱好者</p>
-    <p>专注于城市人文与品牌故事短片</p>
-  </div>
 
-  <div class="video-container">
-    <h2>代表作品</h2>
-    <!-- 在这里粘贴你的 B站嵌入代码 -->
-    <iframe src="//https://www.bilibili.com/video/BV1Pkx6zTEYM/?spm_id_from=333.1387.homepage.video_card.click&vd_source=b13907927b342d8dff145f357df6b7d0" 
-            allowfullscreen="true">
-    </iframe>
-  </div>
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo">Riot的作品集</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#portfolio">作品集</a></li>
+                    <li><a href="#resume">个人简历</a></li>
+                    <li><a href="#contact">联系我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <div class="resume">
-    <a href="resume.pdf" download>🔽 下载我的简历</a>
-  </div>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>你好，欢迎来到我的创意空间。</h2>
+                <p>这里是我展示想法与作品的地方。</p>
+            </div>
+        </section>
 
-  <div style="text-align: center; margin-top: 40px; color: #777;">
-    📩 联系我：lihua@example.com
-  </div>
+        <section id="portfolio" class="content-section">
+            <div class="container">
+                <h3>作品集</h3>
+                <p><i>(这里未来将用网格布局展示您的图片和视频作品。)</i></p>
+                <div class="portfolio-placeholder">
+                    <div class="placeholder-item">作品1</div>
+                    <div class="placeholder-item">作品2</div>
+                    <div class="placeholder-item">作品3</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="content-section">
+            <div class="container">
+                <h3>个人简历</h3>
+                <p><i>(这里将详细介绍您的教育背景、工作经历和技能。)</i></p>
+                <h4>关于我</h4>
+                <p>我是一名充满热情的创作者，致力于通过视觉语言讲述故事。</p>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container">
+                <h3>联系我</h3>
+                <p>您可以通过以下方式找到我：[您的邮箱] 或 [您的社交媒体链接]。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Riot的作品集. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
