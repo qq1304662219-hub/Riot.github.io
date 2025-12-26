@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 方舟 | 最终版</title>
+    <title>AI 方舟 v5.0 | 大师版</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 </head>
@@ -12,7 +12,7 @@
     <aside class="sidebar">
         <header class="logo-header">
             <h1>🚀 AI 方舟</h1>
-            <p>最终版</p>
+            <p>v5.0 大师版</p>
         </header>
         <nav class="main-nav">
             <ul>
@@ -28,9 +28,21 @@
             </ul>
         </nav>
         <footer class="sidebar-footer">
+            <div class="social-links">
+                <a href="https://space.bilibili.com/473654563?spm_id_from=333.1387.0.0" target="_blank" title="Bilibili">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.53,10.12c-.28,0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5Zm-5,0c-.28,0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5Zm5.92,4.95c-1.42,1.38-3.48,2.29-5.42,2.29s-4-1-5.42-2.32c-.17-.16-.18-.42-.03-.59s.42-.18.59-.03c1.28,1.19,3.11,1.92,4.86,1.92s3.58-.74,4.86-1.92c.17-.16.43-.15.59.03.16.17.15.43-.03.59h0Z M22.71,6.52c-.3-1.14-1.25-2-2.45-2.09C18.3,4.2,16.2,4,14.05,4h-4.1C7.8,4,5.7,4.2,3.74,4.43c-1.2.1-2.15.95-2.45,2.09C1,7.68,1,9.35,1,11v2c0,1.65,0,3.32.29,4.48.3,1.14,1.25,2,2.45,2.09,1.96.23,4.06.43,6.21.43h4.1c2.15,0,4.25-.2,6.21-.43,1.2-.1,2.15-.95,2.45-2.09.29-1.16.29-2.83.29-4.48V11c0-1.65,0-3.32-.29-4.48ZM3,11c0-1.43.06-2.93.26-4.04.1-.53.53-.94,1.07-1.01,1.89-.22,3.92-.4,5.67-.4h4c1.75,0,3.78.18,5.67.4.54.07.97.48,1.07,1.01.2,1.11.26,2.61.26,4.04v2c0,1.43-.06,2.93-.26,4.04-.1.53-.53.94-1.07,1.01-1.89.22-3.92.4-5.67.4h-4c-1.75,0-3.78-.18-5.67-.4-.54-.07-.97-.48-1.07-1.01C3.06,15.93,3,14.43,3,13Z"/></svg>
+                </a>
+            </div>
             <p>&copy; 2025 AI Ark by Riot</p>
         </footer>
     </aside>
+
+    <div class="mobile-overlay"></div>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <main class="content">
         <header class="hero-search-section">
@@ -44,6 +56,10 @@
         </header>
 
         <div class="main-tool-grid">
+            <div id="no-results-message" class="hide">
+                <h3>未找到匹配的工具</h3>
+                <p>请尝试其他关键词。</p>
+            </div>
             <section id="image-art" class="tool-section"><h2>AI 图像与艺术</h2><div class="category-banner"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="AI 图像与艺术 Banner"></div><div class="tool-grid">
                 <a href="https://www.midjourney.com/" target="_blank" class="tool-card"><img src="https://i.imgur.com/GZ2A6hf.png" alt="Midjourney"><h3>Midjourney <span class="hot-tag">🔥</span></h3><p>顶级的图像生成AI，通过文本描述创造出惊人、高质量的艺术作品。</p></a>
                 <a href="https://dreamstudio.ai/" target="_blank" class="tool-card"><img src="https://i.imgur.com/fL39v3e.png" alt="Stable Diffusion"><h3>Stable Diffusion</h3><p>强大的开源文生图模型，可进行高度自定义，是许多应用的底层技术。</p></a>
@@ -103,6 +119,10 @@
             </div></section>
         </div>
     </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+    </a>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -110,12 +130,42 @@
             const toolCards = document.querySelectorAll('.tool-card');
             const toolSections = document.querySelectorAll('.tool-section');
             const navLinks = document.querySelectorAll('.nav-link');
+            const noResultsMessage = document.getElementById('no-results-message');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            const backToTopButton = document.querySelector('.back-to-top');
+
+            // --- 汉堡菜单功能 ---
+            const toggleMobileNav = () => {
+                const isActive = sidebar.classList.toggle('is-active');
+                mobileNavToggle.classList.toggle('is-active');
+                mobileOverlay.classList.toggle('is-active');
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            };
+            mobileNavToggle.addEventListener('click', toggleMobileNav);
+            mobileOverlay.addEventListener('click', toggleMobileNav);
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (sidebar.classList.contains('is-active')) {
+                        toggleMobileNav();
+                    }
+                });
+            });
 
             // --- 实时搜索功能 ---
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                toolCards.forEach(card => card.classList.toggle('hide', !card.textContent.toLowerCase().includes(searchTerm)));
-                toolSections.forEach(section => section.classList.toggle('hide', section.querySelectorAll('.tool-card:not(.hide)').length === 0));
+                let visibleCount = 0;
+                toolCards.forEach(card => {
+                    const isVisible = card.textContent.toLowerCase().includes(searchTerm);
+                    card.classList.toggle('hide', !isVisible);
+                    if(isVisible) visibleCount++;
+                });
+                toolSections.forEach(section => {
+                    section.classList.toggle('hide', section.querySelectorAll('.tool-card:not(.hide)').length === 0);
+                });
+                noResultsMessage.classList.toggle('hide', visibleCount > 0);
             });
             
             // --- 滚动加载动画 ---
@@ -129,15 +179,28 @@
             }, { threshold: 0.05 });
             document.querySelectorAll('.tool-card, .category-banner').forEach(el => observer.observe(el));
 
-            // --- 侧边栏滚动高亮 ---
-             const onScroll = () => {
+            // --- 侧边栏与返回顶部按钮的滚动逻辑 ---
+            const onScroll = () => {
+                // 返回顶部按钮
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('is-visible');
+                } else {
+                    backToTopButton.classList.remove('is-visible');
+                }
+                
+                // 侧边栏高亮
                 let currentSectionId = '';
                 toolSections.forEach(section => {
                      if (!section.classList.contains('hide') && window.scrollY >= section.offsetTop - 150) {
                         currentSectionId = section.getAttribute('id');
                     }
                 });
-                navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href').substring(1) === currentSectionId));
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
             };
             window.addEventListener('scroll', onScroll);
         });
